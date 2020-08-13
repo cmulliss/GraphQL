@@ -65,4 +65,16 @@ server \$: npm install -D @types/body-parser
 We'll then import the bodyParser module in our index.ts file.
 
 server/src/index.ts
-import bodyParser from "body-parser";
+import bodyParser from "body-parser"
+
+## Why GraphQL
+
+Is a query language for APIs
+
+Typed language, so need to be explicit
+
+Intuitive, Performant, Typed
+
+All data served in single endpoint
+
+Is a spec, not a direct implementation
