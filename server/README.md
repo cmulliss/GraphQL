@@ -78,3 +78,10 @@ Intuitive, Performant, Typed
 All data served in single endpoint
 
 Is a spec, not a direct implementation
+
+## Apollo Server
+
+npm install apollo-server-express
+
+then as a dependency of above:
+npm install graphql

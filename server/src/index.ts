@@ -1,27 +1,14 @@
 import express from 'express'
-import bodyParser from 'body-parser'
+import { ApolloServer } from 'apollo-server-express'
+
 
 import { listings } from './listings'
 
 const app = express()
 const port = 9000
-app.use(bodyParser.json())
 
-// listings route, 'get' data
-app.get('/listings', (_req, res) => {
-  res.send(listings)
-})
-// delete listings route
-app.post('/delete-listing', (req, res) => {
-  const id: string = req.body.id
-
-  for (let i = 0; i < listings.length; i++) {
-    if (listings[i].id === id) {
-      return res.send(listings.splice(i, 1))
-    }
-  }
-  return res.send('Failed to delete listing')
-})
+const server = new ApolloServer()
+server.applyMiddleware(app, path: '/api')
 
 app.listen(port)
 
@@ -44,5 +31,7 @@ To use middleware in our Express server, we'll use the .use() function in our ap
 
 server/src/index.ts
 app.use(bodyParser.json());
+
+// import apolloServer class, then create an instance
 
 */
