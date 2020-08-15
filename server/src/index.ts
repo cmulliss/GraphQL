@@ -1,20 +1,24 @@
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
-
-
-import { listings } from './listings'
+import { typeDefs, resolvers } from './graphql'
 
 const app = express()
 const port = 9000
+const server = new ApolloServer({ typeDefs, resolvers })
 
-const server = new ApolloServer()
-server.applyMiddleware(app, path: '/api')
-
+server.applyMiddleware({ app, path: '/api' })
 app.listen(port)
 
-console.log(`[app]: http://localhost:${port} `)
+console.log(`[app] : http://localhost:${port}`)
 
-/* _req as wont be using it, then callback
+/*
+to use the graphQL schema language
+typedefs
+resolvers
+
+graphql folder and files
+
+_req as wont be using it, then callback
 need body parser middleware untility lib
 
 npm install body-parser
@@ -32,6 +36,24 @@ To use middleware in our Express server, we'll use the .use() function in our ap
 server/src/index.ts
 app.use(bodyParser.json());
 
-// import apolloServer class, then create an instance
+// import apolloServer class, then create an instance, add schema to server
+
+npm run start
+
+then http://localhost:9000/api
+
+will give you an interactive playground
+
+try:
+
+query {
+  hello
+}
+
+mutation {
+  hello
+}
+
+our express app is now fully prepared with apollo server
 
 */

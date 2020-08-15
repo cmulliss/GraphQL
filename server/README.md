@@ -85,3 +85,31 @@ npm install apollo-server-express
 
 then as a dependency of above:
 npm install graphql
+
+## USING THE GRAPHQL SCHEMA LANGUAGE
+
+Apollo Server conventionally allows us to define a GraphQL schema by setting up two different values.
+
+typeDefs - string that represents the GraphQL schema.
+resolvers - map of functions that implement the schema.
+We'll create these in separate files located within a src/graphql folder. We'll also create an index.ts file in the src/grapqhl folder to gather the typeDefs and resolvers map and export them explicitly from the graphql/ folder.
+
+server/
+src/
+graphql/
+index.ts
+resolvers.ts
+typeDefs.ts
+// ...
+
+import { gql } from "apollo-server-express";
+
+The gql tag will allow us to write GraphQL in our code by having strings be parsed as a GraphQL Abstract Syntax Tree. Let's see this in action before we discuss how the gql tag works. We'll export and create a const variable named typeDefs that has the gql tag wrapped around a template literal string.
+
+### GQL
+
+The gql tag helps parse the string we've created into a GraphQL Abstract Syntax tree and Apollo Server requires us to use it to wrap our schema.
+
+For clarification - gql is a function that takes a string as an argument. The string argument has to be constructed with template literals. You might be wondering why this function appears a little strange since its use involves the placement of a template string beside the gql reference. This is an ES6 feature known as "tagged template literals" which isn't commonly used but allows for the capability to parse strings with a preprocessor. The main takeaway here is that gql is a tag (i.e. function) where the argument is derived from the template literal applied alongside it. It takes the string and returns a GraphQL Tree.
+
+By using the gql tag, it helps us manipulate the GraphQL document by making it easier to add/remove fields and perform more complicated functionality like merging queries. This is most apparent when we install and use an accompanying editor extension like the VSCode's Apollo GraphQL Extension. When installed, we'll get appropriate syntax highlighting for all our GraphQL documents created with the gql tag!
